@@ -6,9 +6,9 @@
 
 ```c++
 struct book {
-	char title;
-	char author;
-	float value;
+    char title;
+    char author;
+    float value;
 }; //注意分号
 ```
 
@@ -18,9 +18,9 @@ struct book {
 book library;
 或
 struct book {
-	char title;
-	char author;
-	float value;
+    char title;
+    char author;
+    float value;
 } library; //定义之后跟变量名
 ```
 
@@ -28,9 +28,9 @@ struct book {
 
 ```c++
 struct {  //无标记
-	char title;
-	char author;
-	float value;
+    char title;
+    char author;
+    float value;
 } library;
 ```
 
@@ -40,9 +40,9 @@ struct {  //无标记
 
 ```c++
 struct book library = {
-      “Hero”,
-      “Renee Vivotte”,
-      1.95
+    “Hero”,
+    “Renee Vivotte”,
+    1.95
 } ;
 ```
 
@@ -115,9 +115,9 @@ struct book library;
 library = getinfo();
 ….
 struct book getinfo(void) {
-	struct book temp;
-	….
-	return temp;
+    struct book temp;
+    ….
+    return temp;
 }
 ```
 
@@ -135,9 +135,9 @@ struct book getinfo(void) {
 
 ```c
 union TokenValue {
-	char cval;
-	int ival;
-	double dval;
+    char cval;
+    int ival;
+    double dval;
 };
 ```
 
@@ -151,10 +151,10 @@ union 不能具有静态数据成员或引用成员，而且，union 不能具�
 
 ```c++
 union illegal_members {
-	Screen s;       // error: has constructor
-	static int is; // error: static member
-	int &rfi;       // error: reference member
-	Screen *ps;    // ok: ordinary built-in pointer type
+    Screen s;       // error: has constructor
+    static int is; // error: static member
+    int &rfi;       // error: reference member
+    Screen *ps;    // ok: ordinary built-in pointer type
 };
 ```
 
@@ -184,11 +184,11 @@ union illegal_members {
 
 ```c
 union U
- {
-     char s[9];
-     int n;
-     double d;
- };
+{
+    char s[9];
+    int n;
+    double d;
+};
 ```
 
 sizeof (u1) =16。s占9字节，n占4字节，d占8字节，因此其至少需9字节的空间。然而其实际大小为16。这是因为这里存在字节对齐的问题，9既不能被4整除，也不能被8整除。因此补充字节到16，这样就符合所有成员的自身对齐了。
@@ -196,9 +196,9 @@ sizeof (u1) =16。s占9字节，n占4字节，d占8字节，因此其至少需9�
 ```c
 union U2
 {
-   char s[5];
-   int n;
-   double d;
+    char s[5];
+    int n;
+    double d;
 };
 ```
 
@@ -226,23 +226,23 @@ pt->ival = 42;
 
 ```c
 class Token {
-	public:
-		enum TokenKind {INT, CHAR, DBL};
-		TokenKind tok;  //用枚举对象 tok 指出 val 成员中存储了哪种值
-		union { // unnamed union
-			char cval;
-			int ival;
-			double dval;
-		} val; // member val is a union of the 3 listed types
+    public:
+	enum TokenKind {INT, CHAR, DBL};
+	TokenKind tok;  //用枚举对象 tok 指出 val 成员中存储了哪种值
+	union { // unnamed union
+	    char cval;
+	    int ival;
+	    double dval;
+	} val; // member val is a union of the 3 listed types
 };
 Token token;
 switch (token.tok) {
-	case Token::INT:
-		token.val.ival = 42; break;
-	case Token::CHAR:
-		token.val.cval = 'a'; break;
-	case Token::DBL:
-		token.val.dval = 3.14; break;
+    case Token::INT:
+	token.val.ival = 42; break;
+    case Token::CHAR:
+	token.val.cval = 'a'; break;
+    case Token::DBL:
+	token.val.dval = 3.14; break;
 }
 ```
 
@@ -253,8 +253,8 @@ switch (token.tok) {
 ```c
 struct test_struct { 
     char *name; 
-	union {   //匿名联合
-   	 	char gender; 
+    union {   //匿名联合
+   	char gender; 
     	int id; 
     }; 
     int num; 
@@ -262,7 +262,7 @@ struct test_struct {
 // 结构体变量test_struct直接使用联合体中的成员
    ……
 struct test_struct test_struct = {"tanglinux", 'F', 28 }; 
-   printf("test_struct.gender = %c, test_struct.id = %d\n",   test_struct.gender, test_struct.id); 
+printf("test_struct.gender = %c, test_struct.id = %d\n",   test_struct.gender, test_struct.id); 
 ……
 ```
 
@@ -272,24 +272,24 @@ struct test_struct test_struct = {"tanglinux", 'F', 28 };
 
 ```c
 class Token {
-	public:
-		enum TokenKind {INT, CHAR, DBL};
-		TokenKind tok;
-		union {  //匿名联合
-			char cval;
-			int ival;
-			double dval;
-		};
+    public:
+	enum TokenKind {INT, CHAR, DBL};
+	TokenKind tok;
+	union {  //匿名联合
+	    char cval;
+	    int ival;
+	    double dval;
+	};
 };
 
 Token token;
 switch (token.tok) {
-	case Token::INT:
-		token.ival = 42; break;
-	case Token::CHAR:
-		token.cval = 'a'; break;
-	case Token::DBL:
-		token.dval = 3.14; break;
+    case Token::INT:
+	token.ival = 42; break;
+    case Token::CHAR:
+	token.cval = 'a'; break;
+    case Token::DBL:
+	token.dval = 3.14; break;
 }
 ```
 
@@ -317,4 +317,5 @@ switch (color) {
    case green :
        //do sth
        break;
+}
 ```
